@@ -2,7 +2,7 @@
 
 A simple machine learning model that predicts a team's medal count during the Olympic Games.
 
-Using historical data from 1964 to 2016, the model uses the athlete count, event count, and previous medals count variables as predictors for team medal counts, as these variables have strong correlations, ranging from 0.77 to 0.92.
+Using historical data from 1964 to 2016, the model uses the athlete count, event count, and previous medals count as predictive variables for team medal counts, as these variables have strong correlations, ranging from 0.77 to 0.92.
 
 <img width="1020" alt="variable_relationships" src="https://user-images.githubusercontent.com/98411949/198403571-a055af73-56d9-44f5-a13f-93dab5e1fd5a.png">
 
