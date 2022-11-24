@@ -1,3 +1,5 @@
+# A simple machine learning model that predicts a team's medal count during the Olympic Games
+
 import pandas as pd
 import seaborn as sns
 
@@ -5,7 +7,6 @@ teams = pd.read_csv("teams.csv")
 
 # Using the relevant data from teams.csv
 teams = teams[["team", "country", "year", "athletes", "events", "age", "prev_medals", "medals"]]
-teams
 
 # Identifying which columns (variables) have a strong correlation with medals
 # In this ML model, we will use prev_medals, athletes, and events to predict the number of medals
@@ -16,9 +17,8 @@ sns.lmplot(x="athletes", y="medals", data=teams, fit_reg=True, ci=None)
 sns.lmplot(x="events", y="medals", data=teams, fit_reg=True, ci=None)
 sns.lmplot(x="prev_medals", y="medals", data=teams, fit_reg=True, ci=None)
 
-# Removing missing values from dataset
+# Removing NaN values from dataset
 teams = teams.dropna()
-teams.shape
 
 # Data splitting - train: (1609/2014 or 79.9%) - test: (405/2014 or 20.1%)
 train = teams[teams["year"] < 2012].copy()
@@ -52,7 +52,6 @@ error = mean_absolute_error(test["medals"], test["medal_prediction"])
 
 # Looking at errors by country
 errors = (test["medals"] - test["medal_prediction"]).abs()
-errors
 
 # Grouping errors by team, medals by team
 errors_by_team = errors.groupby(test["team"]).mean()
@@ -62,6 +61,7 @@ medals_by_team = test["medals"].groupby(test["team"]).mean()
 error_ratio = errors_by_team / medals_by_team
 
 import numpy as np
+
 error_ratio = error_ratio[np.isfinite(error_ratio)]
 error_ratio.sort_values()
 
